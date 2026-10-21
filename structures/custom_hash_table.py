@@ -8,12 +8,9 @@ class KeyValuePair:
 class SensorRegistryHashTable:
     """
     A fixed-bucket Hash Table using Chaining for collision resolution.
-    Forces students to understand how a Hash Table optimizes access time 
-    under fixed memory constraints.
     """
     def __init__(self, num_buckets: int = 10):
         self.num_buckets = num_buckets
-        # An array of Dynamic Linked Lists to handle collisions
         self.buckets = [DoublyLinkedList() for _ in range(num_buckets)]
 
     def _hash_function(self, key: str) -> int:
@@ -23,10 +20,12 @@ class SensorRegistryHashTable:
     def put(self, key: str, value: any) -> None:
         """
         TODO: 
-        1. Compute the bucket index using self._hash_function(key).
-        2. Search the DoublyLinkedList at that bucket to see if the key already exists.
-        3. If the key exists, update its value.
-        4. If it doesn't exist, insert a new KeyValuePair at the head of the linked list.
+        1. Compute the bucket index: index = self._hash_function(key)
+        2. Search the DoublyLinkedList at self.buckets[index] to see if the key exists.
+           (Hint: Use bucket.search(lambda kv: kv.key == key))
+        3. If the node/key exists, update its node.data.value = value.
+        4. If it doesn't exist, create KeyValuePair(key, value) and insert at head:
+           bucket.insert_at_head(KeyValuePair(key, value))
         """
         # YOUR CODE HERE
         pass
@@ -36,7 +35,7 @@ class SensorRegistryHashTable:
         TODO:
         1. Compute the bucket index.
         2. Search the linked list at that bucket for the key.
-        3. Return the value if found, otherwise raise KeyError.
+        3. Return node.data.value if found, otherwise raise KeyError("Key not found").
         """
         # YOUR CODE HERE
         pass
