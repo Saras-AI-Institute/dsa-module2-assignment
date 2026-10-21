@@ -4,49 +4,55 @@ from structures.dynamic_linked_list import DoublyLinkedList
 class TelemetryBufferQueue:
     """
     Behavior Requirement: FIFO (First In, First Out)
-    Constraint: Data volume fluctuates intensely. 
-    Selection: Should we use a Static Array or a Dynamic Linked List?
     """
     def __init__(self):
-        # TODO: Instantiate the correct structure chosen from your tasks
         self.storage = DoublyLinkedList() 
 
     def enqueue_packet(self, packet: dict) -> None:
-        """TODO: Add packet to the queue"""
+        """
+        TODO: Add packet to the queue. 
+        (Hint: You can insert at tail or head depending on your linked list implementation,
+         just ensure FIFO order is maintained with dequeue!)
+        """
+        # YOUR CODE HERE
         pass
 
     def dequeue_packet(self) -> dict:
-        """TODO: Remove and return the oldest packet"""
+        """
+        TODO: Remove and return the oldest packet.
+        (Hint: Use self.storage.remove_from_tail() or equivalent method.)
+        """
+        # YOUR CODE HERE
         pass
 
 
 class EmergencyOverrideStack:
     """
     Behavior Requirement: LIFO (Last In, First Out)
-    Constraint: Memory is strictly limited to 10 slots for system stability.
-    Selection: Array-based stack vs Linked List stack? 
+    Constraint: Memory is strictly limited to max_capacity slots.
     """
     def __init__(self, max_capacity=10):
-        # TODO: Instantiate the correct structure to optimize access and enforce capacity limits
         self.storage = StaticArray(max_capacity)
         self.top_index = -1
+        self.max_capacity = max_capacity
 
     def push_critical_signal(self, error_code: str) -> None:
-        """TODO: Push onto stack. Raise OverflowError if max_capacity exceeded."""
+        """
+        TODO: 
+        1. Check if the stack is full (e.g., self.top_index + 1 >= self.max_capacity).
+        2. If full, raise OverflowError("Stack Overflow: Max capacity exceeded").
+        3. Otherwise, increment self.top_index and store in self.storage.set(self.top_index, error_code).
+        """
+        # YOUR CODE HERE
         pass
 
     def pop_critical_signal(self) -> str:
-        """TODO: Pop from stack. Raise IndexError if empty."""
+        """
+        TODO: 
+        1. Check if stack is empty (self.top_index < 0). If so, raise IndexError("Stack Underflow").
+        2. Retrieve value using self.storage.get(self.top_index).
+        3. Clear the slot by setting it to None: self.storage.set(self.top_index, None).
+        4. Decrement self.top_index and return the value.
+        """
+        # YOUR CODE HERE
         pass
-
-
-class GridZoneNode:
-    """
-    Behavior Requirement: Hierarchical / Non-Linear Tree Organization
-    """
-    def __init__(self, zone_name: str):
-        self.zone_name = zone_name
-        self.children = [] # Holds sub-zone nodes
-
-    def add_sub_zone(self, child_node) -> None:
-        self.children.append(child_node)
